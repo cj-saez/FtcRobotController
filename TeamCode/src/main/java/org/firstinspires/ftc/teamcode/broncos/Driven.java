@@ -20,7 +20,10 @@ public class Driven extends OpMode
         this.frontRight = hardwareMap.get(DcMotor.class, "fr");
         this.backLeft = hardwareMap.get(DcMotor.class, "bl");
         this.backRight = hardwareMap.get(DcMotor.class, "br");
+// whats up ????????
+        {//#wecandothis
 
+        }
         //hello
         // bye
     }
@@ -30,6 +33,8 @@ public class Driven extends OpMode
         double drive = gamepad1.left_stick_y;
         double strafe = gamepad1.left_stick_x;
         double steer = gamepad1.right_stick_x;
+        double clawservo = gamepad1.right_stick_y;
+
 
         
 
