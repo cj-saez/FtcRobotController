@@ -21,9 +21,10 @@ public class Driven extends OpMode
         this.backLeft = hardwareMap.get(DcMotor.class, "bl");
         this.backRight = hardwareMap.get(DcMotor.class, "br");
 // whats up ????????
-        {//#wecandothis
+        //#wecandothis
 
-        }
+
+
         //hello
         // bye
     }
@@ -32,11 +33,14 @@ public class Driven extends OpMode
     public void loop() {
         double drive = gamepad1.left_stick_y;
         double strafe = gamepad1.left_stick_x;
-        double steer = gamepad1.right_stick_x;
+        double turn = gamepad1.right_stick_x;
         double clawservo = gamepad1.right_stick_y;
 
-
-        
+        double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), .45);
+        double frontLeftPower = (drive + strafe + turn) / denominator;
+        double frontRightPower = (drive - strafe - turn) / denominator;
+        double backLeftPower = (drive - strafe + turn) / denominator;
+        double backRightPower = (drive + strafe - turn) / denominator;
 
 
     }
