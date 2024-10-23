@@ -25,8 +25,7 @@ public class Driven extends OpMode
 
 
 
-        //hello
-        // bye
+
     }
 
     @Override
@@ -34,7 +33,7 @@ public class Driven extends OpMode
         double drive = gamepad1.left_stick_y;
         double strafe = gamepad1.left_stick_x;
         double turn = gamepad1.right_stick_x;
-        double clawservo = gamepad1.right_stick_y;
+        double clawsServo = gamepad1.right_stick_y;
 
         double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), .45);
         double frontLeftPower = (drive + strafe + turn) / denominator;
@@ -42,6 +41,19 @@ public class Driven extends OpMode
         double backLeftPower = (drive - strafe + turn) / denominator;
         double backRightPower = (drive + strafe - turn) / denominator;
 
+        frontLeft.setPower(frontLeftPower);
+        frontRight.setPower(frontRightPower);
+        backLeft.setPower(backLeftPower);
+        frontLeft.setPower(backRightPower);
+
+//        if(gamepad1.left_stick_y == 1) {
+//
+//            frontLeft.setPower(0.5);
+//            frontRight.setPower(0.5);
+//            backRight.setPower(0.5);
+//            backLeft.setPower(0.5);
+//
+//        }
 
     }
 }
