@@ -12,6 +12,7 @@ public class Driven extends OpMode
     DcMotor frontLeft;
     DcMotor backLeft;
     DcMotor backRight;
+    DcMotor slideDrive;
 
 
     @Override
@@ -20,6 +21,8 @@ public class Driven extends OpMode
         this.frontRight = hardwareMap.get(DcMotor.class, "fr");
         this.backLeft = hardwareMap.get(DcMotor.class, "bl");
         this.backRight = hardwareMap.get(DcMotor.class, "br");
+        this.slideDrive = hardwareMap.get(DcMotor.class, "Slide");
+
 // whats up ????????
         //#wecandothis
 
@@ -33,7 +36,7 @@ public class Driven extends OpMode
         double drive = gamepad1.left_stick_y;
         double strafe = -gamepad1.left_stick_x;
         double turn = gamepad1.right_stick_x;
-        double clawsServo = gamepad1.right_stick_y;
+        double slideDrive = gamepad1.right_stick_y;
 
         double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), .45);
         double frontLeftPower = (drive + strafe + turn) / denominator;
@@ -46,14 +49,10 @@ public class Driven extends OpMode
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
 
-//        if(gamepad1.left_stick_y == 1) {
-//
-//            frontLeft.setPower(0.5);
-//            frontRight.setPower(0.5);
-//            backRight.setPower(0.5);
-//            backLeft.setPower(0.5);
-//
-//        }
+        slideDrive.setPower(slideDrive);
 
+//
+//
+//
     }
 }
