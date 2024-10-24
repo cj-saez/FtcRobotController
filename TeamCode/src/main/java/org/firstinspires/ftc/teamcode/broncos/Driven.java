@@ -44,7 +44,7 @@ public class Driven extends OpMode
         frontLeft.setPower(frontLeftPower);
         frontRight.setPower(frontRightPower);
         backLeft.setPower(backLeftPower);
-        frontLeft.setPower(backRightPower);
+        backRight.setPower(backRightPower);
 
 //        if(gamepad1.left_stick_y == 1) {
 //
