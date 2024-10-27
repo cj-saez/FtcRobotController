@@ -49,16 +49,19 @@ public class Driven extends OpMode
         double frontRightPower = (drive - strafe - turn) / denominator;
         double backLeftPower = (drive - strafe + turn) / denominator;
         double backRightPower = (drive + strafe - turn) / denominator;
-        double slideDrivePower = slideDrive;
+        double slideDrivePower = slideDrive / denominator;
+        double armRotationPower = armRotation / denominator;
+        double armExtensionPower = armExtension / denominator;
 
-        
+
+
         frontLeft.setPower(frontLeftPower);
         frontRight.setPower(frontRightPower);
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
         this.slideDrive.setPower(slideDrivePower);
-        this.armRotation.setPower(1);
-        this.armExtension.setPower(1);
+        this.armRotation.setPower(armRotationPower);
+        this.armExtension.setPower(armExtensionPower);
 
 //
 //
