@@ -13,9 +13,9 @@ public class Driven extends OpMode
     DcMotor backLeft;
     DcMotor backRight;
     DcMotor slideDrive;
-    DcMotor armRotation;
-    DcMotor armExtension;
-    DcMotor claw;
+    Servo armRotation;
+    Servo armExtension;
+    Servo claw;
 
 
     @Override
@@ -25,9 +25,9 @@ public class Driven extends OpMode
         this.backLeft = hardwareMap.get(DcMotor.class, "bl");
         this.backRight = hardwareMap.get(DcMotor.class, "br");
         this.slideDrive = hardwareMap.get(DcMotor.class, "Slide");
-        this.armRotation = hardwareMap.get(DcMotor.class, "arm");
-        this.armExtension = hardwareMap.get(DcMotor.class, "extension");
-        this.claw = hardwareMap.get(DcMotor.class, "claw");
+        this.armRotation = hardwareMap.get(Servo.class, "arm");
+        this.armExtension = hardwareMap.get(Servo.class, "extension");
+        this.claw = hardwareMap.get(Servo.class, "claw");
 
 // whats up ????????
         //#wecandothis
@@ -52,11 +52,11 @@ public class Driven extends OpMode
         double frontRightPower = (drive - strafe - turn) / denominator;
         double backLeftPower = (drive - strafe + turn) / denominator;
         double backRightPower = (drive + strafe - turn) / denominator;
-        double slideDrivePower = slideDrive / denominator;
-        double armRotationPower = armRotation / denominator;
-        double armExtensionPower = armExtension / denominator;
-        double clawPower = claw / denominator;
 
+        double slideDrivePower = slideDrive;
+        double armRotationPower = armRotation;
+        double armExtensionPower = armExtension;
+        double clawPower = claw;
 
 
         frontLeft.setPower(frontLeftPower);
