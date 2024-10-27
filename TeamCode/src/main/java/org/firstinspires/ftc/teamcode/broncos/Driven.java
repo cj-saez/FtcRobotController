@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.broncos;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 
@@ -64,9 +65,9 @@ public class Driven extends OpMode
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
         this.slideDrive.setPower(slideDrivePower);
-        this.armRotation.setPower(armRotationPower);
-        this.armExtension.setPower(armExtensionPower);
-        this.claw.setPower(clawPower);
+        this.armRotation.setPosition(armRotationPower);
+        this.armExtension.setPosition(armExtensionPower);
+        this.claw.setPosition(clawPower);
 
 //
 //
