@@ -32,9 +32,13 @@ public class Driven extends OpMode
 
 // whats up ????????
         //#wecandothis
+        slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideDrive.setTargetPosition(0);
+        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        slideDrive.setPower(1);
 
-
-
+        armRotation.setPosition(1);
+        armExtension.setPosition(0);
 
     }
 
@@ -43,9 +47,6 @@ public class Driven extends OpMode
         double drive = gamepad1.left_stick_y;
         double strafe = -gamepad1.left_stick_x;
         double turn = gamepad1.right_stick_x;
-        double slideDrive = gamepad1.right_stick_y;
-        double armRotation = gamepad1.left_trigger;
-        double armExtension = gamepad1.right_trigger;
         double claw = gamepad1.touchpad_finger_1_x;
 
         double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), .45);
@@ -54,23 +55,25 @@ public class Driven extends OpMode
         double backLeftPower = (drive - strafe + turn) / denominator;
         double backRightPower = (drive + strafe - turn) / denominator;
 
-        double slideDrivePower = slideDrive;
-        double armRotationPower = armRotation;
-        double armExtensionPower = armExtension;
-        double clawPower = claw;
-
 
         frontLeft.setPower(frontLeftPower);
         frontRight.setPower(frontRightPower);
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
-        this.slideDrive.setPower(slideDrivePower);
-        this.armRotation.setPosition(armRotationPower);
-        this.armExtension.setPosition(armExtensionPower);
-        this.claw.setPosition(clawPower);
+
+//        this.armExtension.setPosition(armExtension);
+        this.claw.setPosition(claw);
 
 //
-//
+if(gamepad1.dpad_up == true){
+    slideDrive.setTargetPosition(-2100);
+    armRotation.setPosition(0.45);
+    armExtension.setPosition(0.2);
+}else if(gamepad1.dpad_down == true){
+    slideDrive.setTargetPosition(0);
+}
+
+
 //
     }
 }
