@@ -1,14 +1,18 @@
 package org.firstinspires.ftc.teamcode.broncos;
 
+import android.os.DropBoxManager;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
 
 public class Driven extends OpMode
 {
+    ElapsedTime time;
     DcMotor frontRight;
     DcMotor frontLeft;
     DcMotor backLeft;
@@ -29,6 +33,7 @@ public class Driven extends OpMode
         this.armRotation = hardwareMap.get(Servo.class, "arm");
         this.armExtension = hardwareMap.get(Servo.class, "extension");
         this.claw = hardwareMap.get(Servo.class, "claw");
+        time = new ElapsedTime();
 
 // whats up ????????
         //#wecandothis
@@ -41,11 +46,17 @@ public class Driven extends OpMode
         armExtension.setPosition(0);
 
     }
+@Override
+public void start(){
+        time.reset();
+}
+
+
 
     @Override
     public void loop() {
         double drive = gamepad1.left_stick_y;
-        double strafe = -gamepad1.left_stick_x;
+        double strafe = gamepad1.left_stick_x;
         double turn = gamepad1.right_stick_x;
         double claw = gamepad1.touchpad_finger_1_x;
 
@@ -62,18 +73,20 @@ public class Driven extends OpMode
         backRight.setPower(backRightPower);
 
 //        this.armExtension.setPosition(armExtension);
-        this.claw.setPosition(claw);
 
 //
-if(gamepad1.dpad_up == true){
-    slideDrive.setTargetPosition(-2100);
-    armRotation.setPosition(0.45);
-    armExtension.setPosition(0.2);
+        double slideMoved = slideDrive.getCurrentPosition();
+
+        if(gamepad1.dpad_up == true){
+
+            slideDrive.setTargetPosition((int) slideMoved);
+
 }else if(gamepad1.dpad_down == true){
-    slideDrive.setTargetPosition(0);
 }
 
 
 //
     }
+
+
 }
