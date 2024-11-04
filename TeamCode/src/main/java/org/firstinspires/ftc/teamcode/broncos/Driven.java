@@ -37,9 +37,10 @@ public class Driven extends OpMode
 // whats up ????????
         //#wecandothis
         slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         slideDrive.setTargetPosition(0);
-       //slideDrive.setPower(1);
+        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //slideDrive.setPower(1);
 
 
         armRotation.setPosition(1);
