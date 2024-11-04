@@ -79,7 +79,7 @@ public void start(){
 //        this.armExtension.setPosition(armExtension);
 
 //
-        int slidePosition;
+        int slidePosition0;
 
         if(gamepad1.dpad_up == true) {
 
