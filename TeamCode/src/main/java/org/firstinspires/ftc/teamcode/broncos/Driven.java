@@ -89,7 +89,9 @@ public void start(){
             slideDrive.setPower(-slidedrivepower);
         } else if (gamepad1.dpad_up == false) {
 
+            slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             slideDrive.setTargetPosition(slideMoved);
+            slideDrive.setPower(1);
             slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
