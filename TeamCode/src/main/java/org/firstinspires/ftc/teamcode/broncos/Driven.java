@@ -78,22 +78,22 @@ public void start(){
 //        this.armExtension.setPosition(armExtension);
 
 //
-
+        int slidePosition;
 
         if(gamepad1.dpad_up == true) {
 
             slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             slideDrive.setPower(-slidedrivepower);
+            slidePosition = slideDrive.getCurrentPosition();
 
 
          } else if (gamepad1.dpad_up == false) {
 
-            int slideMoved;
-            slideMoved = slideDrive.getCurrentPosition();
-            slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            slideDrive.setTargetPosition(slideMoved);
-            slideDrive.setPower(1);
+
             slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            slideDrive.setTargetPosition(slidePosition);
+            slideDrive.setPower(-1);
+
             telemetry.addData("slideMoved", slideMoved);
             telemetry.update();
 
@@ -102,6 +102,7 @@ public void start(){
         if(gamepad1.dpad_down == true) {
 
             slideDrive.setPower(slidedrivepower);
+
         }
 
 
