@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.broncos;
 
 import android.os.DropBoxManager;
+import android.provider.Settings;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -21,6 +23,7 @@ public class Driven extends OpMode
     Servo armExtension;
     Servo claw;
 
+    int slidePosition;
 
     @Override
     public void init() {
@@ -79,7 +82,7 @@ public void start(){
 //        this.armExtension.setPosition(armExtension);
 
 //
-        int slidePosition0;
+
 
         if(gamepad1.dpad_up == true) {
 
@@ -87,24 +90,24 @@ public void start(){
             slideDrive.setPower(-slidedrivepower);
             slidePosition = slideDrive.getCurrentPosition();
 
+         }
+        if(gamepad1.dpad_down == true) {
 
-         } else if (gamepad1.dpad_up == false) {
-
+            slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            slideDrive.setPower(slidedrivepower);
+            slidePosition = slideDrive.getCurrentPosition();
+        }
+        if (gamepad1.dpad_up == false && gamepad1.dpad_down == false) {
+            slideDrive.setTargetPosition(slidePosition);
 
             slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            slideDrive.setTargetPosition(slidePosition);
             slideDrive.setPower(-1);
+
 
             telemetry.addData("slideMoved", slidePosition);
             telemetry.update();
-
         }
 
-        if(gamepad1.dpad_down == true) {
-
-            slideDrive.setPower(slidedrivepower);
-
-        }
 
 
 
