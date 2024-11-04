@@ -90,6 +90,7 @@ public void start(){
         } else if (gamepad1.dpad_up == false) {
 
             slideDrive.setTargetPosition(slideMoved);
+            slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
         if(gamepad1.dpad_down == true) {
