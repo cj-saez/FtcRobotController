@@ -41,6 +41,7 @@ public class Driven extends OpMode
        // slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
        // slideDrive.setPower(1);
 
+        slidePosition = slideDrive.getCurrentPosition();
 
         armRotation.setPosition(1);
         armExtension.setPosition(0);
@@ -94,7 +95,7 @@ public void start(){
             slideDrive.setTargetPosition(slidePosition);
             slideDrive.setPower(-1);
 
-            telemetry.addData("slideMoved", slideMoved);
+            telemetry.addData("slideMoved", slidePosition);
             telemetry.update();
 
         }
