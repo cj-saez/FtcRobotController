@@ -36,10 +36,11 @@ public class Driven extends OpMode
 
 // whats up ????????
         //#wecandothis
-       // slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         slideDrive.setTargetPosition(0);
-       // slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-       // slideDrive.setPower(1);
+       //slideDrive.setPower(1);
+
 
         armRotation.setPosition(1);
         armExtension.setPosition(0);
@@ -79,25 +80,24 @@ public void start(){
 //
        int slideMoved;
         slideMoved = slideDrive.getCurrentPosition();
+        telemetry.addData("slideMoved", slideMoved);
+        telemetry.update();
 
+        if(gamepad1.dpad_up == true) {
 
-        while(gamepad1.dpad_up == true) {
-
-            // slideDrive.setTargetPosition(slideMoved + 100);
             slideDrive.setPower(-slidedrivepower);
+        } else if (gamepad1.dpad_up == false) {
 
-        }
-        while(gamepad1.dpad_up== false){
-
-            slideDrive.setPower(0);
+            slideDrive.setTargetPosition(slideMoved);
         }
 
-         while(gamepad1.dpad_down == true){
+        if(gamepad1.dpad_down == true) {
 
-             slideDrive.setPower(slidedrivepower);
+            slideDrive.setPower(slidedrivepower);
+        }
 
 
-         }
+
 
 
 //
