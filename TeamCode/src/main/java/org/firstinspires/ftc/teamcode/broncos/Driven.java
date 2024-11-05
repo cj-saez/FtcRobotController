@@ -24,6 +24,7 @@ public class Driven extends OpMode
     Servo armExtension;
     Servo claw;
 
+
     int slidePosition;
     //  double rotationPosition;
     double servoPosition = 0.5;
@@ -50,10 +51,18 @@ public class Driven extends OpMode
        // slideDrive.setPower(1);
 
         slidePosition = slideDrive.getCurrentPosition();
-       // rotationPosition = armRotation.getPosition();
+
+        slideDrive.setTargetPosition(0);
+        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        slideDrive.setPower(1);
+
+        // rotationPosition = armRotation.getPosition();
         armRotation.setPosition(1);
         armExtension.setPosition(1);
         claw.setPosition(0.55);
+
+        telemetry.addData("servo position Extension", servoPositionExtension);
+        telemetry.update();
 
     }
 @Override
@@ -90,30 +99,35 @@ public void start(){
 //
 
 ////////////////////linear Slides START///////////////////////////////
-        if(gamepad1.dpad_up == true) {
+   if((slidePosition < 1) || (slidePosition > -2310) ){
 
-            slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            slideDrive.setPower(-slidedrivepower);
-            slidePosition = slideDrive.getCurrentPosition();
+       slidePosition = slideDrive.getCurrentPosition();
+     //  telemetry.addData("slidePosition", slidePosition);
+    //   telemetry.update();
 
-         }
-        if(gamepad1.dpad_down == true) {
+       if (gamepad1.dpad_up == true) {
 
-            slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            slideDrive.setPower(slidedrivepower);
-            slidePosition = slideDrive.getCurrentPosition();
-        }
-        if (gamepad1.dpad_up == false && gamepad1.dpad_down == false) {
-            slideDrive.setTargetPosition(slidePosition);
+           slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+           slideDrive.setPower(-slidedrivepower);
+           slidePosition = slideDrive.getCurrentPosition();
 
-            slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            slideDrive.setPower(-1);
+       }
+       if (gamepad1.dpad_down == true) {
 
-//
-//            telemetry.addData("slideMoved", slidePosition);
-//            telemetry.update();
-        }
+           slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+           slideDrive.setPower(slidedrivepower);
+           slidePosition = slideDrive.getCurrentPosition();
+       }
+       if (gamepad1.dpad_up == false && gamepad1.dpad_down == false) {
+           slideDrive.setTargetPosition(slidePosition);
 
+           slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+           slideDrive.setPower(-1);
+
+       }
+   }else if(slidePosition >= 1 || slidePosition <= -2310) {
+       slideDrive.setPower(0);
+   }
 /////////////////LINEAR SLIDES END////////////////////////////////
 
 //
@@ -143,8 +157,8 @@ public void start(){
         servoPosition = Math.max(0.0, Math.min(1.0, servoPosition));
         armRotation.setPosition(servoPosition);
 
-        telemetry.addData("servo position", servoPosition);
-        telemetry.update();
+       // telemetry.addData("servo position", servoPosition);
+       // telemetry.update();
 ////////////////////ARM ROTATION END////////////////////////////////
 
 
@@ -154,6 +168,8 @@ public void start(){
 
 
 ///////////////////////////ARM EXTENSION START////////////////////////////////
+
+
         if(gamepad1.dpad_left == true)  {
 
             servoPositionExtension += 0.005;
@@ -165,7 +181,8 @@ public void start(){
             servoPositionExtension -= 0.003;
         }
 
-        servoPositionExtension = Math.max(0.0, Math.min(1.0, servoPositionExtension));
+
+        servoPositionExtension = Math.max(0.3, Math.min(1.4, servoPositionExtension));
         armExtension.setPosition(servoPositionExtension);
 
         telemetry.addData("servo position Extension", servoPositionExtension);
