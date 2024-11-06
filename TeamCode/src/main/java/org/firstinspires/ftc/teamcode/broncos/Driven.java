@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -99,35 +100,22 @@ public void start(){
 //
 
 ////////////////////linear Slides START///////////////////////////////
-   if((slidePosition < 1) || (slidePosition > -2310) ){
-
-       slidePosition = slideDrive.getCurrentPosition();
      //  telemetry.addData("slidePosition", slidePosition);
     //   telemetry.update();
 
-       if (gamepad1.dpad_up == true) {
-
-           slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+       if (gamepad1.dpad_up == true && slidePosition > -2310) {
+           slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            slideDrive.setPower(-slidedrivepower);
            slidePosition = slideDrive.getCurrentPosition();
-
-       }
-       if (gamepad1.dpad_down == true) {
-
-           slideDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+       } else if (gamepad1.dpad_down == true && slidePosition < 1) {
+           slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            slideDrive.setPower(slidedrivepower);
            slidePosition = slideDrive.getCurrentPosition();
-       }
-       if (gamepad1.dpad_up == false && gamepad1.dpad_down == false) {
+       } else if (gamepad1.dpad_up == false && gamepad1.dpad_down == false) {
            slideDrive.setTargetPosition(slidePosition);
-
+           slideDrive.setPower(1);
            slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-           slideDrive.setPower(-1);
-
        }
-   }else if(slidePosition >= 1 || slidePosition <= -2310) {
-       slideDrive.setPower(0);
-   }
 /////////////////LINEAR SLIDES END////////////////////////////////
 
 //
@@ -182,11 +170,11 @@ public void start(){
         }
 
 
-        servoPositionExtension = Math.max(0.3, Math.min(1.4, servoPositionExtension));
+        servoPositionExtension = Math.max(0.3, Math.min(, servoPositionExtension));
         armExtension.setPosition(servoPositionExtension);
 
-        telemetry.addData("servo position Extension", servoPositionExtension);
-        telemetry.update();
+       // telemetry.addData("servo position Extension", servoPositionExtension);
+      //  telemetry.update();
 
 
 ///////////////////////////ARM EXTENSION END////////////////////////////////
@@ -198,7 +186,7 @@ public void start(){
 //////////////////////CLAW START////////////////////////////////
 
         if(gamepad1.a == true) {
-            claw.setPosition(0.8);
+            claw.setPosition(1);
         }else if(gamepad1.b == true) {
             claw.setPosition(0.55);
         }
