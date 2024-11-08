@@ -170,7 +170,7 @@ public void start(){
         }
 
 
-        servoPositionExtension = Math.max(0.3, Math.min(, servoPositionExtension));
+        servoPositionExtension = Math.max(0.3, Math.min(0.9, servoPositionExtension));
         armExtension.setPosition(servoPositionExtension);
 
        // telemetry.addData("servo position Extension", servoPositionExtension);
