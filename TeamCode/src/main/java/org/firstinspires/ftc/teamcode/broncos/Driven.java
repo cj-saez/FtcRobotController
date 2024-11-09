@@ -187,7 +187,7 @@ public void start(){
 //////////////////////CLAW START////////////////////////////////
 
         if(gamepad1.right_bumper == true) {
-            claw.setPosition(0.53);
+            claw.setPosition(0.55);
         }else if(gamepad1.left_bumper == true) {
             claw.setPosition(0);
         }
