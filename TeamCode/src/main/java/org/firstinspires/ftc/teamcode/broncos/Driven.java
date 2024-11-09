@@ -59,8 +59,8 @@ public class Driven extends OpMode
 
         // rotationPosition = armRotation.getPosition();
         armRotation.setPosition(1);
-        armExtension.setPosition(0);
-        claw.setPosition(0.55);
+        armExtension.setPosition(1);
+        claw.setPosition(0);
 
         telemetry.addData("servo position Extension", servoPositionExtension);
         telemetry.update();
@@ -170,7 +170,7 @@ public void start(){
         }
 
 
-        servoPositionExtension = Math.max(0.3, Math.min(0.9, servoPositionExtension));
+        servoPositionExtension = Math.max(0.3, Math.min(1, servoPositionExtension));
         armExtension.setPosition(servoPositionExtension);
 
        // telemetry.addData("servo position Extension", servoPositionExtension);
@@ -186,9 +186,9 @@ public void start(){
 //////////////////////CLAW START////////////////////////////////
 
         if(gamepad1.a == true) {
-            claw.setPosition(1);
+            claw.setPosition(0.53);
         }else if(gamepad1.b == true) {
-            claw.setPosition(0.55);
+            claw.setPosition(0);
         }
 //////////////////////CLAW END////////////////////////////////
 //
