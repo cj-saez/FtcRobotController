@@ -86,7 +86,7 @@ if(runtime.seconds()>=5 && runtime.seconds() <5.25){
 }
 
         // After 5 seconds, start strafing right for 4 seconds
-        if (runtime.seconds() >= 6 && runtime.seconds() < 9.7) {
+        if (runtime.seconds() >= 6 && runtime.seconds() < 8.5) {
 
 
             // To strafe right, set motors to opposite directions (left motors forward, right motors backward)
@@ -94,7 +94,7 @@ if(runtime.seconds()>=5 && runtime.seconds() <5.25){
             backLeft.setPower(0.6);   // Move backward (left side)
             frontRight.setPower(0.6); // Move backward (right side)
             backRight.setPower(-0.6);  // Move forward (right side)
-        } else if(runtime.seconds() >= 9.7 && runtime.seconds() < 9.8) {
+        } else if(runtime.seconds() >= 9 && runtime.seconds() < 9.15) {
 
             // move back into parking
             frontLeft.setPower(1);  // Move forward (left side)
