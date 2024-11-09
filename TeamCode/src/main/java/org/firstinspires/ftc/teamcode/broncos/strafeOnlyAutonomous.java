@@ -20,7 +20,8 @@ public class strafeOnlyAutonomous extends OpMode {
     Servo armRotation;
     Servo armExtension;
 
-
+double armservo = 0.8;
+double extensionservo = 1;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -40,10 +41,10 @@ public class strafeOnlyAutonomous extends OpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        double servoPosition = 0.5;
-        double servoPositionExtension = 0.9;
+//        double servoPosition = 0.5;
+//        double servoPositionExtension = 0.9;
 
-        armRotation.setPosition(0.9);
+        armRotation.setPosition(0.8);
         armExtension.setPosition(1);
 
 
@@ -56,6 +57,8 @@ public class strafeOnlyAutonomous extends OpMode {
         runtime.reset();
     }
 
+
+
     @Override
     public void loop() {
         // Wait for 5 seconds before executing the strafe movement
@@ -64,16 +67,19 @@ public class strafeOnlyAutonomous extends OpMode {
 
 
         if (runtime.seconds() < 5) {
-            // Do nothing, just wait for 5 seconds
+
+            armRotation.setPosition(0.8);
+            armExtension.setPosition(1);
+
             return;
         }
 
 
-if(runtime.seconds()>=5 && runtime.seconds() <5.25){
-    frontLeft.setPower(1.0);  // Move forward (left side)
-    backLeft.setPower(1.0);   // Move forward (left side)
-    frontRight.setPower(-0.8); // Move backward (right side)
-    backRight.setPower(-0.8);
+if(runtime.seconds()>=5 && runtime.seconds() <5.15){
+    frontLeft.setPower(1);  // Move forward (left side)
+    backLeft.setPower(1);   // Move forward (left side)
+    frontRight.setPower(-0.4); // Move backward (right side)
+    backRight.setPower(-0.4);// negative b/c wire is switched
 
 
 }
@@ -83,18 +89,27 @@ if(runtime.seconds()>=5 && runtime.seconds() <5.25){
 
 
             // To strafe right, set motors to opposite directions (left motors forward, right motors backward)
-            frontLeft.setPower(1.0);  // Move forward (left side)
-            backLeft.setPower(1.0);   // Move forward (left side)
-            frontRight.setPower(1.0); // Move backward (right side)
-            backRight.setPower(1.0);  // Move backward (right side)
+            frontLeft.setPower(-0.8);  // Move backward (left side)
+            backLeft.setPower(0.8);   // Move forward (left side)
+            frontRight.setPower(0.8); // Move backward (right side)
+            backRight.setPower(-0.8);  // Move forward (right side)
+        } else if(runtime.seconds() >= 9 && runtime.seconds() < 9.15) {
+
+            // move back into parking
+            frontLeft.setPower(-1);  // Move forward (left side)
+            backLeft.setPower(-1);   // Move forward (left side)
+            frontRight.setPower(0.4); // Move backward (right side)
+            backRight.setPower(0.4);
+
         } else {
-            // Stop motors after 4 seconds of strafing
+
+
             frontLeft.setPower(0.0);
             backLeft.setPower(0.0);
             frontRight.setPower(0.0);
             backRight.setPower(0.0);
         }
-    }
+    }//loop//
 
     @Override
     public void stop() {
@@ -103,5 +118,7 @@ if(runtime.seconds()>=5 && runtime.seconds() <5.25){
         backLeft.setPower(0.0);
         frontRight.setPower(0.0);
         backRight.setPower(0.0);
+        armExtension.setPosition(1);
+        armRotation.setPosition(1);
     }
 }
