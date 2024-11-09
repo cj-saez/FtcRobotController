@@ -82,12 +82,13 @@ public void start(){
         double turn = -gamepad1.right_stick_x;
 
 
-        double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), .45);
+        double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), .45) * 1.4;
         double frontLeftPower = (drive + strafe + turn) / denominator;
         double frontRightPower = (drive - strafe - turn) / denominator;
         double backLeftPower = (drive - strafe + turn) / denominator;
         double backRightPower = (drive + strafe - turn) / denominator;
         double slidedrivepower = 1.0;
+
 
 
         frontLeft.setPower(frontLeftPower);
@@ -105,11 +106,11 @@ public void start(){
 
        if (gamepad1.dpad_up == true && slidePosition > -2310) {
            slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-           slideDrive.setPower(-slidedrivepower);
+           slideDrive.setPower(-1);
            slidePosition = slideDrive.getCurrentPosition();
        } else if (gamepad1.dpad_down == true && slidePosition < 1) {
            slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-           slideDrive.setPower(slidedrivepower);
+           slideDrive.setPower(0.4);
            slidePosition = slideDrive.getCurrentPosition();
        } else if (gamepad1.dpad_up == false && gamepad1.dpad_down == false) {
            slideDrive.setTargetPosition(slidePosition);
@@ -131,15 +132,15 @@ public void start(){
 
         //armRotation.setPosition(1);
 
-        if(gamepad1.left_trigger >= 0.5)  {
+        if(gamepad1.a == true)  {
 
-          servoPosition += 0.006;
+          servoPosition += 0.002;
 
         //    telemetry.addData("armRotation2", rotationPosition);
         //    telemetry.update();
-        }else if(gamepad1.right_trigger >= 0.5) {
+        }else if(gamepad1.y == true) {
 
-            servoPosition -= 0.006;
+            servoPosition -= 0.002;
         }
 
         servoPosition = Math.max(0.0, Math.min(1.0, servoPosition));
@@ -158,13 +159,13 @@ public void start(){
 ///////////////////////////ARM EXTENSION START////////////////////////////////
 
 
-        if(gamepad1.dpad_left == true)  {
+        if(gamepad1.x == true)  {
 
-            servoPositionExtension += 0.005;
+            servoPositionExtension += 0.003;
 
             //    telemetry.addData("armRotation2", rotationPosition);
             //    telemetry.update();
-        }else if(gamepad1.dpad_right == true) {
+        }else if(gamepad1.b == true) {
 
             servoPositionExtension -= 0.003;
         }
@@ -185,9 +186,9 @@ public void start(){
 
 //////////////////////CLAW START////////////////////////////////
 
-        if(gamepad1.a == true) {
+        if(gamepad1.right_bumper == true) {
             claw.setPosition(0.53);
-        }else if(gamepad1.b == true) {
+        }else if(gamepad1.left_bumper == true) {
             claw.setPosition(0);
         }
 //////////////////////CLAW END////////////////////////////////
