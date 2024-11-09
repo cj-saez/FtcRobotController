@@ -44,7 +44,7 @@ double extensionservo = 1;
 //        double servoPosition = 0.5;
 //        double servoPositionExtension = 0.9;
 
-        armRotation.setPosition(0.8);
+        armRotation.setPosition(0.9);
         armExtension.setPosition(1);
 
 
@@ -62,44 +62,45 @@ double extensionservo = 1;
     @Override
     public void loop() {
         // Wait for 5 seconds before executing the strafe movement
-
+        telemetry.addData("Runtime", runtime);
+        telemetry.update();
 
 
 
         if (runtime.seconds() < 5) {
 
-            armRotation.setPosition(0.8);
+            armRotation.setPosition(0.6);
             armExtension.setPosition(1);
 
             return;
         }
 
 
-if(runtime.seconds()>=5 && runtime.seconds() <5.15){
-    frontLeft.setPower(1);  // Move forward (left side)
-    backLeft.setPower(1);   // Move forward (left side)
-    frontRight.setPower(-0.4); // Move backward (right side)
-    backRight.setPower(-0.4);// negative b/c wire is switched
+if(runtime.seconds()>=5 && runtime.seconds() <5.25){
+    frontLeft.setPower(-1);  // Move forward (left side)
+    backLeft.setPower(-1);   // Move forward (left side)
+    frontRight.setPower(-0.85); // Move backward (right side)
+    backRight.setPower(-0.85);// negative b/c wire is switched
 
 
 }
 
         // After 5 seconds, start strafing right for 4 seconds
-        if (runtime.seconds() >= 6 && runtime.seconds() < 9) {
+        if (runtime.seconds() >= 6 && runtime.seconds() < 9.7) {
 
 
             // To strafe right, set motors to opposite directions (left motors forward, right motors backward)
-            frontLeft.setPower(-0.8);  // Move backward (left side)
-            backLeft.setPower(0.8);   // Move forward (left side)
-            frontRight.setPower(0.8); // Move backward (right side)
-            backRight.setPower(-0.8);  // Move forward (right side)
-        } else if(runtime.seconds() >= 9 && runtime.seconds() < 9.15) {
+            frontLeft.setPower(-0.6);  // Move forward (left side)
+            backLeft.setPower(0.6);   // Move backward (left side)
+            frontRight.setPower(0.6); // Move backward (right side)
+            backRight.setPower(-0.6);  // Move forward (right side)
+        } else if(runtime.seconds() >= 9.7 && runtime.seconds() < 9.8) {
 
             // move back into parking
-            frontLeft.setPower(-1);  // Move forward (left side)
-            backLeft.setPower(-1);   // Move forward (left side)
-            frontRight.setPower(0.4); // Move backward (right side)
-            backRight.setPower(0.4);
+            frontLeft.setPower(1);  // Move forward (left side)
+            backLeft.setPower(1);   // Move forward (left side)
+            frontRight.setPower(0.6); // Move backward (right side)
+            backRight.setPower(0.6);
 
         } else {
 
