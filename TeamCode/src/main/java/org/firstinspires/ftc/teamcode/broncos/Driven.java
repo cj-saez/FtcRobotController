@@ -21,12 +21,15 @@ public class Driven extends OpMode
     DcMotor backLeft;
     DcMotor backRight;
     DcMotor slideDrive;
-    Servo armRotation;
+    DcMotor armRotation;
+    DcMotor hangLift;
     Servo armExtension;
     Servo claw;
 
 
     int slidePosition;
+    int armRotationPos;
+    int hangLiftPosition;
     //  double rotationPosition;
     double servoPosition = 0.5;
     double servoPositionExtension = 0.9;
@@ -35,11 +38,18 @@ public class Driven extends OpMode
     @Override
     public void init() {
         this.frontLeft = hardwareMap.get(DcMotor.class, "fl");
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.frontRight = hardwareMap.get(DcMotor.class, "fr");
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.backLeft = hardwareMap.get(DcMotor.class, "bl");
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.backRight = hardwareMap.get(DcMotor.class, "br");
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.slideDrive = hardwareMap.get(DcMotor.class, "Slide");
-        this.armRotation = hardwareMap.get(Servo.class, "arm");
+
+        this.hangLift = hardwareMap.get(DcMotor.class, "HangLift");
+
+        this.armRotation = hardwareMap.get(DcMotor.class, "arm");
         this.armExtension = hardwareMap.get(Servo.class, "extension");
         this.claw = hardwareMap.get(Servo.class, "claw");
         time = new ElapsedTime();
@@ -52,13 +62,26 @@ public class Driven extends OpMode
        // slideDrive.setPower(1);
 
         slidePosition = slideDrive.getCurrentPosition();
+        armRotationPos = armRotation.getCurrentPosition();
+        hangLiftPosition = hangLift.getCurrentPosition();
 
+
+        slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         slideDrive.setTargetPosition(0);
-        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         slideDrive.setPower(1);
+        slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        armRotation.setTargetPosition(0);
+        armRotation.setPower(1);
+        armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        hangLift.setTargetPosition(0);
+        hangLift.setPower(1);
+        hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
 
         // rotationPosition = armRotation.getPosition();
-        armRotation.setPosition(1);
         armExtension.setPosition(1);
         claw.setPosition(0);
 
@@ -87,7 +110,7 @@ public void start(){
         double frontRightPower = (drive - strafe - turn) / denominator;
         double backLeftPower = (drive - strafe + turn) / denominator;
         double backRightPower = (drive + strafe - turn) / denominator;
-        double slidedrivepower = 1.0;
+     //   double slidedrivepower = 1.0;
 
 
 
@@ -103,7 +126,6 @@ public void start(){
 ////////////////////linear Slides START///////////////////////////////
      //  telemetry.addData("slidePosition", slidePosition);
     //   telemetry.update();
-
        if (gamepad1.dpad_up == true && slidePosition > -2310) {
            slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            slideDrive.setPower(-1);
@@ -131,21 +153,19 @@ public void start(){
        // telemetry.update();
 
         //armRotation.setPosition(1);
-
-        if(gamepad1.a == true)  {
-
-          servoPosition += 0.002;
-
-        //    telemetry.addData("armRotation2", rotationPosition);
-        //    telemetry.update();
-        }else if(gamepad1.y == true) {
-
-            servoPosition -= 0.002;
+        if (gamepad1.a == true && armRotationPos > 0) {
+            armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            armRotation.setPower(-0.4);
+            armRotationPos = armRotation.getCurrentPosition();
+        } else if (gamepad1.y == true && armRotationPos < 45) {
+            armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            armRotation.setPower(0.4);
+            armRotationPos = armRotation.getCurrentPosition();
+        } else if (gamepad1.a == false && gamepad1.y== false) {
+            armRotation.setTargetPosition(armRotationPos);
+            armRotation.setPower(0.2);
+            armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-
-        servoPosition = Math.max(0.0, Math.min(1.0, servoPosition));
-        armRotation.setPosition(servoPosition);
-
        // telemetry.addData("servo position", servoPosition);
        // telemetry.update();
 ////////////////////ARM ROTATION END////////////////////////////////
@@ -154,45 +174,58 @@ public void start(){
 //
         //
 
-
-
 ///////////////////////////ARM EXTENSION START////////////////////////////////
-
-
         if(gamepad1.x == true)  {
 
             servoPositionExtension += 0.003;
-
             //    telemetry.addData("armRotation2", rotationPosition);
             //    telemetry.update();
         }else if(gamepad1.b == true) {
 
             servoPositionExtension -= 0.003;
         }
-
-
-        servoPositionExtension = Math.max(0.425, Math.min(1, servoPositionExtension));
+        servoPositionExtension = Math.max(0.3, Math.min(1, servoPositionExtension));
         armExtension.setPosition(servoPositionExtension);
 
        // telemetry.addData("servo position Extension", servoPositionExtension);
       //  telemetry.update(
-
-
 ///////////////////////////ARM EXTENSION END////////////////////////////////
-
-
 //
         //
 
-//////////////////////CLAW START////////////////////////////////
 
+
+//////////////////////CLAW START////////////////////////////////
         if(gamepad1.right_bumper == true) {
             claw.setPosition(0.55);
         }else if(gamepad1.left_bumper == true) {
             claw.setPosition(0);
         }
 //////////////////////CLAW END////////////////////////////////
-//
+
+        //
+ //
+
+
+///////////////////////hangLift Start///////////////////////////
+        if(gamepad1.dpad_left == true) {
+            hangLift.setTargetPosition(0);
+            hangLift.setPower(1);
+            hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }else if(gamepad1.dpad_right == true) {
+            hangLift.setTargetPosition(45);
+            hangLift.setPower(1);
+            hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+
+
+
+//////////////////////hangLift Start////////////////////////////
+
+
+
+
+
     }
 
 
