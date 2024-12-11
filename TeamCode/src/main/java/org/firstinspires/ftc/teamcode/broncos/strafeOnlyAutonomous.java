@@ -84,7 +84,6 @@ if(runtime.seconds()>=5 && runtime.seconds() <5.25){
 
 
 }
-
         // After 5 seconds, start strafing right for 4 seconds
         if (runtime.seconds() >= 6 && runtime.seconds() < 8.5) {
 
