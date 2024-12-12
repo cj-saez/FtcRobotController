@@ -149,25 +149,26 @@ public void start(){
       //  armRotation.setPosition(servoPosition);
       //  rotationPosition = armRotation.getPosition();
 
-        //telemetry.addData("armRotation", rotationPosition);
-       // telemetry.update();
+        telemetry.addData("armRotation", armRotationPos);
+        telemetry.update();
 
         //armRotation.setPosition(1);
-        if (gamepad1.a == true && armRotationPos > 0) {
+        if (gamepad1.a == true ) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(-0.4);
+            armRotation.setPower(0.4);
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.y == true && armRotationPos < 45) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(0.4);
+            armRotation.setPower(-0.4);
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.a == false && gamepad1.y== false) {
             armRotation.setTargetPosition(armRotationPos);
             armRotation.setPower(0.2);
             armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-       // telemetry.addData("servo position", servoPosition);
-       // telemetry.update();
+        telemetry.addData("armRotation", armRotationPos);
+        telemetry.update();
+
 ////////////////////ARM ROTATION END////////////////////////////////
 
 
