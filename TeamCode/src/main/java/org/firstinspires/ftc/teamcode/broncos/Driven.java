@@ -143,6 +143,9 @@ public void start(){
            slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
        }
 /////////////////LINEAR SLIDES END////////////////////////////////
+
+
+        
  ////////////////////ARM ROTATION START////////////////////////////////
         telemetry.addData("armRotation", armRotationPos);
         telemetry.update();
