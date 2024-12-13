@@ -50,6 +50,7 @@ public class Driven extends OpMode
         this.hangLift = hardwareMap.get(DcMotor.class, "HangLift");
 
         this.armRotation = hardwareMap.get(DcMotor.class, "arm");
+
         this.armExtension = hardwareMap.get(Servo.class, "extension");
         this.claw = hardwareMap.get(Servo.class, "claw");
         time = new ElapsedTime();
@@ -71,6 +72,8 @@ public class Driven extends OpMode
         slideDrive.setPower(1);
         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
+        armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armRotation.setTargetPosition(0);
         armRotation.setPower(1);
         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -140,30 +143,21 @@ public void start(){
            slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
        }
 /////////////////LINEAR SLIDES END////////////////////////////////
-
-//
-        //
-
  ////////////////////ARM ROTATION START////////////////////////////////
-      //  servoPosition = Math.max(0.0, Math.min(1.0, servoPosition));
-      //  armRotation.setPosition(servoPosition);
-      //  rotationPosition = armRotation.getPosition();
-
         telemetry.addData("armRotation", armRotationPos);
         telemetry.update();
-
         //armRotation.setPosition(1);
         if (gamepad1.a == true ) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(0.4);
+            armRotation.setPower(1);
             armRotationPos = armRotation.getCurrentPosition();
-        } else if (gamepad1.y == true && armRotationPos < 45) {
+        } else if (gamepad1.y == true) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(-0.4);
+            armRotation.setPower(-1);
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.a == false && gamepad1.y== false) {
             armRotation.setTargetPosition(armRotationPos);
-            armRotation.setPower(0.2);
+            armRotation.setPower(1);
             armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
         telemetry.addData("armRotation", armRotationPos);
