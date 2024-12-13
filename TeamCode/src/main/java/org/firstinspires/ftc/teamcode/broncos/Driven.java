@@ -75,11 +75,11 @@ public class Driven extends OpMode
 
         armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armRotation.setTargetPosition(0);
-        armRotation.setPower(1);
+        armRotation.setPower(0.5);
         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         hangLift.setTargetPosition(0);
-        hangLift.setPower(1);
+        hangLift.setPower(0.5);
         hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
@@ -149,15 +149,15 @@ public void start(){
         //armRotation.setPosition(1);
         if (gamepad1.a == true ) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(1);
+            armRotation.setPower(0.5);
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.y == true) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(-1);
+            armRotation.setPower(-0.2);
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.a == false && gamepad1.y== false) {
             armRotation.setTargetPosition(armRotationPos);
-            armRotation.setPower(1);
+            armRotation.setPower(0.5);
             armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
         telemetry.addData("armRotation", armRotationPos);
