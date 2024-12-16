@@ -29,7 +29,7 @@ public class Driven extends OpMode
 
     int slidePosition = 0;
     int armRotationPos = 0;
-    int hangLiftPosition;
+    int hangLiftPosition = 0;
     //  double rotationPosition;
     double servoPosition = 0.5;
 //    double servoPositionExtension = 0.68;
@@ -78,9 +78,9 @@ public class Driven extends OpMode
         armRotation.setTargetPosition(0);
         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        hangLift.setTargetPosition(0);
-        hangLift.setPower(0.5);
-        hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        hangLift.setTargetPosition(0);
+//        hangLift.setPower(0.5);
+//        hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
 
@@ -160,7 +160,7 @@ public void start(){
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.y == true) {
             armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            armRotation.setPower(-0.5);
+            armRotation.setPower(-0.6);
             armRotationPos = armRotation.getCurrentPosition();
         } else if (gamepad1.a == false && gamepad1.y== false) {
 //            armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -221,14 +221,16 @@ public void start(){
 
 ///////////////////////hangLift Start///////////////////////////
         if(gamepad1.dpad_left == true) {
-            hangLift.setTargetPosition(2);
+
             hangLift.setPower(1);
-            hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }else if(gamepad1.dpad_right == true) {
-            hangLift.setTargetPosition(11111);
-            hangLift.setPower(1);
-            hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            hangLift.setPower(-1);
+        }else if(gamepad1.dpad_left!= true && gamepad1.dpad_right!=true); {
+            hangLift.setPower(0);
+
         }
+
 
 
 

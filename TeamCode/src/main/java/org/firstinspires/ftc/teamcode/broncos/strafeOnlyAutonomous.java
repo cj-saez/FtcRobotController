@@ -17,8 +17,8 @@ public class strafeOnlyAutonomous extends OpMode {
     private DcMotor backLeft = null;
     private DcMotor frontRight = null;
     private DcMotor backRight = null;
-    Servo armRotation;
     Servo armExtension;
+    private DcMotor armRotation;
 
 double armservo = 0.8;
 double extensionservo = 1;
@@ -33,7 +33,7 @@ double extensionservo = 1;
         this.frontRight = hardwareMap.get(DcMotor.class, "fr");
         this.backLeft = hardwareMap.get(DcMotor.class, "bl");
         this.backRight = hardwareMap.get(DcMotor.class, "br");
-        this.armRotation = hardwareMap.get(Servo.class, "arm");
+        this.armRotation = hardwareMap.get(DcMotor.class, "arm");
         this.armExtension = hardwareMap.get(Servo.class, "extension");
 
         // Set the motors to run without encoders (for simplicity in this example)
@@ -44,8 +44,12 @@ double extensionservo = 1;
 //        double servoPosition = 0.5;
 //        double servoPositionExtension = 0.9;
 
-        armRotation.setPosition(0.9);
-        armExtension.setPosition(1);
+        armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armRotation.setPower(1);
+        armRotation.setTargetPosition(0);
+        armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        armExtension.setPosition(0.68);
 
 
 
@@ -66,24 +70,23 @@ double extensionservo = 1;
         telemetry.update();
 
 
-
         if (runtime.seconds() < 5) {
 
-            armRotation.setPosition(0.6);
-            armExtension.setPosition(1);
+//            armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            armRotation.setTargetPosition(-100);
+            armRotation.setPower(1);
+            armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armExtension.setPosition(0.68);
 
             return;
         }
+        if(runtime.seconds()>=5 && runtime.seconds() <5.25){
+            frontLeft.setPower(-1);  // Move forward (left side)
+            backLeft.setPower(-1);   // Move forward (left side)
+            frontRight.setPower(-0.85); // Move backward (right side)
+            backRight.setPower(-0.85);// negative b/c wire is switched
 
-
-if(runtime.seconds()>=5 && runtime.seconds() <5.25){
-    frontLeft.setPower(-1);  // Move forward (left side)
-    backLeft.setPower(-1);   // Move forward (left side)
-    frontRight.setPower(-0.85); // Move backward (right side)
-    backRight.setPower(-0.85);// negative b/c wire is switched
-
-
-}
+        }
         // After 5 seconds, start strafing right for 4 seconds
         if (runtime.seconds() >= 6 && runtime.seconds() < 8.5) {
 
@@ -118,7 +121,9 @@ if(runtime.seconds()>=5 && runtime.seconds() <5.25){
         backLeft.setPower(0.0);
         frontRight.setPower(0.0);
         backRight.setPower(0.0);
-        armExtension.setPosition(1);
-        armRotation.setPosition(1);
+        armExtension.setPosition(0.68);
+        armRotation.setPower(0);
+
+
     }
 }
