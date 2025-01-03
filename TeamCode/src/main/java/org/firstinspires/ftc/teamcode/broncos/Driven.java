@@ -477,7 +477,7 @@ public void start(){
 //////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 //////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 
-            if (gamepad1.b == true) {// normal position ////./.
+            if (gamepad1.dpad_right == true) {// normal position ////./.
 
                 slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 slideDrive.setTargetPosition(-30);
