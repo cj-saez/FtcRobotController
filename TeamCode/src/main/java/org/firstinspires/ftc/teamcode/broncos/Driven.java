@@ -33,6 +33,33 @@ public class Driven extends OpMode {
 //    double servoPositionExtension = 0.68;
     int roboMode;
 
+
+    //
+//              ////  //
+//    ////
+//    ////
+//    ////
+//    ////
+//    //  //  //
+//    ////
+//    ////
+//    ////
+//    ////
+//    //  //
+////
+////
+////
+////
+//  //  //
+////
+////
+////
+////
+//  //
+//
+//
+//
+
     @Override
     public void init() {
         this.frontLeft = hardwareMap.get(DcMotor.class, "fl");
@@ -87,10 +114,8 @@ public class Driven extends OpMode {
 //        hangLift.setPower(0.5);
 //        hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
-
         //rotationPosition = armRotation.getPosition();
-        armExtension.setPosition(0.68);
+        armExtension.setPosition(0.65);
         claw.setPosition(0.36);
 
         roboMode = 1;
@@ -103,8 +128,27 @@ public void start(){
         time.reset();
 }
 
-
-
+////
+////
+////
+////
+////
+//  //  //
+////
+////
+////
+////
+//  //  //
+////
+////
+////
+////
+//  //
+//
+//
+//
+//
+  //
     @Override
     public void loop() {
 
@@ -132,7 +176,27 @@ public void start(){
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
 ///////////////////DRIVE END////////////////////////////////////
-//
+////  //
+//    ////
+//    ////
+//    ////
+//    ////
+//    //  //  //
+//    ////
+//    ////
+//    ////
+//    ////
+//    //  //  //  //
+//    ////
+//    ////
+//    ////
+//    ////
+//    //  //  //
+//    ////
+//    ////
+//    ////
+//    ////
+//    //  //
     //
   ///////////////././././././././././././.change mode///////////,.,.,.,,/,/,/../././././././../././././../././././././../
     if (gamepad1.left_trigger >= 0.5 && roboMode==1){
@@ -143,6 +207,19 @@ public void start(){
 //.////////////././././././././././././././change mode ^/./././././..../././/.../....//././/./././.././././.././././
 //
 //
+
+        /////////////////////////////  |   ////////////////////////
+        //////////////////////////    |    /////////////////////
+        /////////////////////////   \ | / //////////////////////
+        /////////////////// MODE 1   \ /  ////////////////////////////
+        ////////////////////////////     ////////////////////////
+        /////////////////////////////////////////////////////////
+        ///////////////// normal drive all manual ////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+
+
+
  while(roboMode == 1) { /////manual control
 
 
@@ -251,8 +328,6 @@ public void start(){
 //////////////////////CLAW END////////////////////////////////
 
      //
-     //
-
 
 /////////////////////////hangLift Start///////////////////////////
 //     if (gamepad1.dpad_left == true) {
@@ -268,17 +343,25 @@ public void start(){
 //     }
 
 
-//////////////////////hangLift Start////////////////////////////
+//////////////////////hangLift END ////////////////////////////
 
 
 
-        } ////////././././. ROBO MODE 1/././././././//////////
+        } ////////././././. ROBO MODE 1  ^  /././././././//////////
        ////////
-       /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+       /////////////////////////////  |   ////////////////////////
         //////////////////////////    |    /////////////////////
         /////////////////////////   \ | / //////////////////////
-        ///////////////////// MODE 2 \ /  ////////////////////////////
-        ////////////////////////////  |  ////////////////////////
+        /////////////////// MODE 2   \ /  ////////////////////////////
+        ////////////////////////////     ////////////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////
@@ -310,6 +393,10 @@ public void start(){
 
          }//gamempad Y top bucket
 
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
             if (gamepad1.a == true){ // bottom bucket/////
 
                 // slides up //
@@ -333,6 +420,9 @@ public void start(){
                 // Extension //
 
             } /// bottom bucket game pad a /////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 
             if (gamepad1.x = true){ // tape marks //
 
@@ -348,7 +438,7 @@ public void start(){
                 // slides up //
                 // Rotation up //
                armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-               armRotation.setTargetPosition(50);//figure out position of in sub
+               armRotation.setTargetPosition(50);//figure out position of tape mark
                armRotation.setPower(0.5);
                armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 // Rotation up //
@@ -357,9 +447,71 @@ public void start(){
                 // Extension //
 
             }/// tape mark////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 
+            if (gamepad1.b == true){// submersible //
 
-        }//////././/.././ ROBO MODE 2 /.//./...//.//////////
+                slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                slideDrive.setTargetPosition(-30);
+                slideDrive.setPower(1);
+                slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                slideDrive2.setTargetPosition(30);
+                slideDrive2.setPower(1);
+                slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                // slides up //
+                // Rotation up //
+                armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                armRotation.setTargetPosition(50);//figure out position of in the sub
+                armRotation.setPower(0.4);
+                armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                // Rotation up //
+                // Extension out //
+                armExtension.setPosition(0.6);
+                // Extension //
+
+            } /// submersible ////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+            if (gamepad1.b == true) {// normal position ////./.
+
+                slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                slideDrive.setTargetPosition(-30);
+                slideDrive.setPower(1);
+                slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                slideDrive2.setTargetPosition(30);
+                slideDrive2.setPower(1);
+                slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                // slides up //
+                // Rotation up //
+                armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                armRotation.setTargetPosition(100);//figure out position of in the sub
+                armRotation.setPower(0.4);
+                armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                // Rotation up //
+                // Extension out //
+                armExtension.setPosition(0.65);
+                // Extension //
+
+            }/////./..////// normal position////////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+///////claw////./././////////////
+            if (gamepad1.right_bumper == true) {
+                claw.setPosition(0.7);
+            } else if (gamepad1.left_bumper == true) {
+                claw.setPosition(0.36);
+            }
+///////// claw////./././///////////
+
+        }//////././/.././ ROBO MODE 2 end /.//./...//.//////////
 
     }
 
