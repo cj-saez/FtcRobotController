@@ -199,16 +199,19 @@ public void start(){
     //
   ///////////////././././././././././././.change mode///////////,.,.,.,,/,/,/../././././././../././././../././././././../
 
+
+
+
         if (gamepad1.right_trigger >= 0.5 && !triggerPressedLast) {
+
+
             roboMode = (roboMode == 1) ? 2 : 1;
+
         }
         triggerPressedLast = gamepad1.right_trigger >= 0.5;
 
-        if (roboMode == 1) {
-            // Existing code for roboMode 1
-        } else if (roboMode == 2) {
-            // Existing code for roboMode 2
-        }
+        telemetry.addData("robo mode", roboMode);
+        telemetry.update();
 //.////////////././././././././././././././change mode ^/./././././..../././/.../....//././/./././.././././.././././
 //
 //
@@ -372,155 +375,155 @@ public void start(){
         /////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////
         //
-// if (roboMode == 2){
+ if (roboMode == 2){
+
+     if (gamepad1.y == true){// top position// \//  top bucket //// triangle ////
 //
-//     if (gamepad1.y == true){// top position// \//  top bucket //// triangle ////
-////
-//                // slides up //
-//
-//         slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive.setTargetPosition(-2000);
-//         slideDrive.setPower(1);
-//         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive2.setTargetPosition(2000);
-//         slideDrive2.setPower(1);
-//         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//                // slides up //
-//             // Rotation up //
-//         armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         armRotation.setTargetPosition(-50);//figure out position of up
-//         armRotation.setPower(0.5);
-//         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//                // Rotation up //
-//             // Extension out //
-//         armExtension.setPosition(0.48);
-//                // Extension //
-//
-//     }//gamempad Y top bucket
-//
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//
-//     if (gamepad1.a == true){ // bottom bucket///// x //
-//
-//                // slides up //
-//         slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive.setTargetPosition(-1000);
-//         slideDrive.setPower(1);
-//         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive2.setTargetPosition(1000);
-//         slideDrive2.setPower(1);
-//         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // slides up //
-//         // Rotation up //
-//         armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         armRotation.setTargetPosition(-50);//figure out position of up
-//         armRotation.setPower(0.5);
-//         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // Rotation up //
-//         // Extension out //
-//         armExtension.setPosition(0.635);
-//         // Extension //
-//
-//     } /// bottom bucket game pad a /////
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//
-//     if (gamepad1.x == true){ // tape marks //
-//
-//                // slides down //
-//         slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive.setTargetPosition(-1);
-//         slideDrive.setPower(1);
-//         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive2.setTargetPosition(1);
-//         slideDrive2.setPower(1);
-//         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // slides up //
-//         // Rotation up //
-//         armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         armRotation.setTargetPosition(-50);//figure out position of tape mark
-//         armRotation.setPower(0.5);
-//         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // Rotation up //
-//         // Extension out //
-//         armExtension.setPosition(0.54);
-//         // Extension //
-//     }/// tape mark////
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//
-//     if (gamepad1.b == true){// submersible //
-//
-//         slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive.setTargetPosition(-100);
-//         slideDrive.setPower(1);
-//         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive2.setTargetPosition(100);
-//         slideDrive2.setPower(1);
-//         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // slides up //
-//         // Rotation up //
-//         armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         armRotation.setTargetPosition(-50);//figure out position of in the sub
-//         armRotation.setPower(0.4);
-//         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // Rotation up //
-//         // Extension out //
-//         armExtension.setPosition(0.6);
-//                // Extension //
-//
-//     } /// submersible ////
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//
-//     if (gamepad1.dpad_right == true) {// normal position ////./.
-//
-//         slideDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive.setTargetPosition(-30);
-//         slideDrive.setPower(1);
-//         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         slideDrive2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         slideDrive2.setTargetPosition(30);
-//         slideDrive2.setPower(1);
-//         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // slides up //
-//         // Rotation up //
-//         armRotation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//         armRotation.setTargetPosition(-50);
-//         armRotation.setPower(0.4);
-//         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//         // Rotation up //
-//         // Extension out //
-//         armExtension.setPosition(0.65);
-//         // Extension //
-//
-//
-//
-//     }/////./..////// normal position////////
-//
-//
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//
-/////////claw////./././////////////
-//     if (gamepad1.right_bumper == true) {
-//         claw.setPosition(0.7);
-//     } else if (gamepad1.left_bumper == true) {
-//         claw.setPosition(0.36);
-//     }
-/////////// claw////./././///////////
-//
-// }//////././/.././ ROBO MODE 2 end /.//./...//.//////////
+                // slides up //
+
+         slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive.setTargetPosition(-2000);
+         slideDrive.setPower(1);
+         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive2.setTargetPosition(2000);
+         slideDrive2.setPower(1);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                // slides up //
+             // Rotation up //
+         armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         armRotation.setTargetPosition(-50);//figure out position of up
+         armRotation.setPower(0.5);
+         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                // Rotation up //
+             // Extension out //
+         armExtension.setPosition(0.48);
+                // Extension //
+
+     }//gamempad Y top bucket
+
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+     if (gamepad1.a == true){ // bottom bucket///// x //
+
+                // slides up //
+         slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive.setTargetPosition(-1000);
+         slideDrive.setPower(1);
+         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive2.setTargetPosition(1000);
+         slideDrive2.setPower(1);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // slides up //
+         // Rotation up //
+         armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         armRotation.setTargetPosition(-50);//figure out position of up
+         armRotation.setPower(0.5);
+         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // Rotation up //
+         // Extension out //
+         armExtension.setPosition(0.635);
+         // Extension //
+
+     } /// bottom bucket game pad a /////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+     if (gamepad1.x == true){ // tape marks //
+
+                // slides down //
+         slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive.setTargetPosition(-1);
+         slideDrive.setPower(1);
+         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive2.setTargetPosition(1);
+         slideDrive2.setPower(1);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // slides up //
+         // Rotation up //
+         armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         armRotation.setTargetPosition(-50);//figure out position of tape mark
+         armRotation.setPower(0.5);
+         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // Rotation up //
+         // Extension out //
+         armExtension.setPosition(0.54);
+         // Extension //
+     }/// tape mark////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+     if (gamepad1.b == true){// submersible //
+
+         slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive.setTargetPosition(-100);
+         slideDrive.setPower(1);
+         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive2.setTargetPosition(100);
+         slideDrive2.setPower(1);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // slides up //
+         // Rotation up //
+         armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         armRotation.setTargetPosition(-50);//figure out position of in the sub
+         armRotation.setPower(0.4);
+         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // Rotation up //
+         // Extension out //
+         armExtension.setPosition(0.6);
+                // Extension //
+
+     } /// submersible ////
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+     if (gamepad1.dpad_right == true) {// normal position ////./.
+
+         slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive.setTargetPosition(-30);
+         slideDrive.setPower(1);
+         slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         slideDrive2.setTargetPosition(30);
+         slideDrive2.setPower(1);
+         slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // slides up //
+         // Rotation up //
+         armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         armRotation.setTargetPosition(-50);
+         armRotation.setPower(0.4);
+         armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         // Rotation up //
+         // Extension out //
+         armExtension.setPosition(0.65);
+         // Extension //
+
+
+
+     }/////./..////// normal position////////
+
+
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+
+///////claw////./././////////////
+     if (gamepad1.right_bumper == true) {
+         claw.setPosition(0.7);
+     } else if (gamepad1.left_bumper == true) {
+         claw.setPosition(0.36);
+     }
+///////// claw////./././///////////
+
+ }//////././/.././ ROBO MODE 2 end /.//./...//.//////////
 
     }
 
