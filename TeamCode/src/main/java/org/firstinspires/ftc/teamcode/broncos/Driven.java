@@ -268,11 +268,11 @@ public void start(){
 
      }else if (gamepad1.right_trigger >= 0.5 && slidePosition > -2320 && slidePosition2 < 2320) { /// hang up////
          slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         slideDrive.setPower(1);
+         slideDrive.setPower(-1);
          slidePosition = slideDrive.getCurrentPosition();
 
          slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         slideDrive2.setPower(-1);
+         slideDrive2.setPower(1);
          slidePosition2 = slideDrive2.getCurrentPosition();
 
 
@@ -344,9 +344,10 @@ public void start(){
 ///////////////////////////ARM EXTENSION END////////////////////////////////
 //
      //
+//        int on = 0;
+//        for (roboMode=1; roboMode!=2;)
 
-
-//////////////////////CLAW START////////////////////////////////
+//////////////////////CLAW) START////////////////////////////////
      if (gamepad1.right_bumper == true) {
          claw.setPosition(0.7);
      } else if (gamepad1.left_bumper == true) {
