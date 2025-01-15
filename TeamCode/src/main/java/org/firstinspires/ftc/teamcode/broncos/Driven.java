@@ -113,7 +113,7 @@ public class Driven extends OpMode {
 
         //rotationPosition = armRotation.getPosition();
         armExtension.setPosition(0.65);
-        claw.setPosition(0.36);
+        claw.setPosition(0.38);
 
         roboMode = 1;
 //        telemetry.addData("servo position Extension", servoPositionExtension);
@@ -268,15 +268,15 @@ public void start(){
 
      }else if (gamepad1.right_trigger >= 0.5 && slidePosition > -2320 && slidePosition2 < 2320) { /// hang up////
          slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         slideDrive.setPower(-1);
+         slideDrive.setPower(-0.7);
          slidePosition = slideDrive.getCurrentPosition();
 
          slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         slideDrive2.setPower(1);
+         slideDrive2.setPower(0.7);
          slidePosition2 = slideDrive2.getCurrentPosition();
 
 
-     }else if (gamepad1.dpad_up == false && gamepad1.dpad_down == false && gamepad1.left_trigger < 0.5 && gamepad1.right_trigger <0.5) {
+     }else if (gamepad1.dpad_up == false && gamepad1.dpad_down == false && gamepad1.left_trigger < 0.5 && gamepad1.right_trigger < 0.5) {
          slideDrive.setTargetPosition(slidePosition);
          slideDrive.setPower(1);
          slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -294,7 +294,7 @@ public void start(){
      telemetry.addData("armRotation", armRotationPos);
      telemetry.update();
      //armRotation.setPosition(1);
-     if (gamepad1.a == true) {
+     if (gamepad1.a == true) {///down//
          armRotation.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
          armRotation.setPower(0.15);
          armRotationPos = armRotation.getCurrentPosition();
@@ -351,7 +351,7 @@ public void start(){
      if (gamepad1.right_bumper == true) {
          claw.setPosition(0.7);
      } else if (gamepad1.left_bumper == true) {
-         claw.setPosition(0.36);
+         claw.setPosition(0.38);
      }
 //////////////////////CLAW END////////////////////////////////
 
