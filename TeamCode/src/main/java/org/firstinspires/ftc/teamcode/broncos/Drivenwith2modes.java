@@ -112,7 +112,7 @@ public class Drivenwith2modes extends OpMode {
 //        hangLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         //rotationPosition = armRotation.getPosition();
-        armExtension.setPosition(0.65);
+        armExtension.setPosition(0.65); // in
         claw.setPosition(0.36);
 
         roboMode = 1;
@@ -266,15 +266,6 @@ public void start(){
              slideDrive2.setPower(-1);
              slidePosition2 = slideDrive2.getCurrentPosition();
 
-     }else if (gamepad1.right_trigger >= 0.5 && slidePosition > -2320 && slidePosition2 < 2320) { /// hang up////
-         slideDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         slideDrive.setPower(-1);
-         slidePosition = slideDrive.getCurrentPosition();
-
-         slideDrive2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         slideDrive2.setPower(1);
-         slidePosition2 = slideDrive2.getCurrentPosition();
-
 
      }else if (gamepad1.dpad_up == false && gamepad1.dpad_down == false && gamepad1.left_trigger < 0.5 && gamepad1.right_trigger <0.5) {
          slideDrive.setTargetPosition(slidePosition);
@@ -413,16 +404,16 @@ public void start(){
 //
                 // slides up //
 
-         slideDrive.setTargetPosition(-2000);
+         slideDrive.setTargetPosition(-2310);
          slideDrive.setPower(1);
          slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         slideDrive2.setTargetPosition(2000);
+         slideDrive2.setTargetPosition(2310);
          slideDrive2.setPower(1);
          slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 // slides up //
              // Rotation up //
-         armRotation.setTargetPosition(-50);//figure out position of up
-         armRotation.setPower(0.5);
+         armRotation.setTargetPosition(-550);//figure out position of up
+         armRotation.setPower(1);
          armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 // Rotation up //
              // Extension out //
@@ -430,28 +421,28 @@ public void start(){
                 // Extension //
 
      }//gamempad Y top bucket
-
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 
      if (gamepad1.a == true){ // bottom bucket///// x //
 
                 // slides up //
-         slideDrive.setTargetPosition(-1000);
+         slideDrive.setTargetPosition(-2050);
          slideDrive.setPower(1);
          slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         slideDrive2.setTargetPosition(1000);
+         slideDrive2.setTargetPosition(2050);
          slideDrive2.setPower(1);
          slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // slides up //
          // Rotation up //
-         armRotation.setTargetPosition(-50);//figure out position of up
-         armRotation.setPower(0.5);
+         armRotation.setTargetPosition(-200);//figure out position of up
+         armRotation.setPower(1);
          armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // Rotation up //
          // Extension out //
-         armExtension.setPosition(0.635);
+         armExtension.setPosition(0.635); /// in
          // Extension //
 
      } /// bottom bucket game pad a /////
@@ -459,7 +450,7 @@ public void start(){
 //////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 //////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 
-     if (gamepad1.x == true){ // tape marks //
+     if (gamepad1.x == true){ // tape marks // // square//////
 
                 // slides down //
          slideDrive.setTargetPosition(-1);
@@ -470,53 +461,53 @@ public void start(){
          slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // slides up //
          // Rotation up //
-         armRotation.setTargetPosition(-50);//figure out position of tape mark
-         armRotation.setPower(0.5);
+         armRotation.setTargetPosition(-85);//figure out position of tape mark
+         armRotation.setPower(1);
          armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // Rotation up //
          // Extension out //
          armExtension.setPosition(0.54);
          // Extension //
      }/// tape mark////
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\//
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\//
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\//
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\//
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\//
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\//
+//
+     if (gamepad1.b == true){// submersible // // circle//////
 
-     if (gamepad1.b == true){// submersible //
-
-         slideDrive.setTargetPosition(-100);
+         slideDrive.setTargetPosition(-500);
          slideDrive.setPower(1);
          slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         slideDrive2.setTargetPosition(100);
+         slideDrive2.setTargetPosition(500);
          slideDrive2.setPower(1);
          slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // slides up //
          // Rotation up //
          armRotation.setTargetPosition(-50);//figure out position of in the sub
-         armRotation.setPower(0.4);
+         armRotation.setPower(1);
          armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // Rotation up //
          // Extension out //
-         armExtension.setPosition(0.6);
+         armExtension.setPosition(0.48);// ,
                 // Extension //
 
      } /// submersible ////
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
 
      if (gamepad1.dpad_right == true) {// normal position ////./.
 
-         slideDrive.setTargetPosition(-30);
+         slideDrive.setTargetPosition(-350);
          slideDrive.setPower(1);
          slideDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         slideDrive2.setTargetPosition(30);
+         slideDrive2.setTargetPosition(350);
          slideDrive2.setPower(1);
          slideDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // slides up //
          // Rotation up //
-         armRotation.setTargetPosition(-50);
-         armRotation.setPower(0.4);
+         armRotation.setTargetPosition(-200);
+         armRotation.setPower(1);
          armRotation.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          // Rotation up //
          // Extension out //
@@ -527,18 +518,18 @@ public void start(){
 
      }/////./..////// normal position////////
 
-
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-//////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
-
-///////claw////./././////////////
+//
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+////////////////////////\\\\\\\\\\\\\\\\\\\\///////////////////////////////\\\\\\\\\\\\\\\\\
+//
+/////////claw////./././////////////
      if (gamepad1.right_bumper == true) {
          claw.setPosition(0.7);
      } else if (gamepad1.left_bumper == true) {
          claw.setPosition(0.36);
      }
-///////// claw////./././///////////
+/////////// claw////./././///////////
 
  }//////././/.././ ROBO MODE 2 end /.//./...//.//////////
 
